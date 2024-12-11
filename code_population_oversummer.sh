@@ -43,3 +43,10 @@ cat 5.vcf| grep -v 'Het_site' > 6.vcf
 4. vcftools --vcf 6.vcf --recode --recode-INFO-all  --mac 3 --maf 0.1 --minQ 100 --max-missing 0.9 --out 7
 
 5. vcftools --vcf 7.recode.vcf  --recode --recode-INFO-all --thin 1000  --out 9
+
+#IQ-tree
+iqtree -s sequences.fasta -m MFP -T AUTO -B 1000
+
+# Mantel test
+mantel_result <- mantel(genetic_distance, geographic_distance, method = "spearman")
+print(paste("r =", mantel_result$statistic, "p =", mantel_result$signif))
